@@ -1,0 +1,13 @@
+D:\งาน มอ\Math ภาค\GCD\GCD\bin\Debug\netcoreapp3.1\GCD.exe
+D:\งาน มอ\Math ภาค\GCD\GCD\bin\Debug\netcoreapp3.1\GCD.deps.json
+D:\งาน มอ\Math ภาค\GCD\GCD\bin\Debug\netcoreapp3.1\GCD.runtimeconfig.json
+D:\งาน มอ\Math ภาค\GCD\GCD\bin\Debug\netcoreapp3.1\GCD.runtimeconfig.dev.json
+D:\งาน มอ\Math ภาค\GCD\GCD\bin\Debug\netcoreapp3.1\GCD.dll
+D:\งาน มอ\Math ภาค\GCD\GCD\bin\Debug\netcoreapp3.1\GCD.pdb
+D:\งาน มอ\Math ภาค\GCD\GCD\obj\Debug\netcoreapp3.1\GCD.csprojAssemblyReference.cache
+D:\งาน มอ\Math ภาค\GCD\GCD\obj\Debug\netcoreapp3.1\GCD.AssemblyInfoInputs.cache
+D:\งาน มอ\Math ภาค\GCD\GCD\obj\Debug\netcoreapp3.1\GCD.AssemblyInfo.cs
+D:\งาน มอ\Math ภาค\GCD\GCD\obj\Debug\netcoreapp3.1\GCD.csproj.CoreCompileInputs.cache
+D:\งาน มอ\Math ภาค\GCD\GCD\obj\Debug\netcoreapp3.1\GCD.dll
+D:\งาน มอ\Math ภาค\GCD\GCD\obj\Debug\netcoreapp3.1\GCD.pdb
+D:\งาน มอ\Math ภาค\GCD\GCD\obj\Debug\netcoreapp3.1\GCD.genruntimeconfig.cache
