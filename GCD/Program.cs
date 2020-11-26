@@ -3,37 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Eu
+namespace Euclid
 {
     class Program
     {
-        List<int> number = new List<int>();
+        List<int> ListofInputnumber = new List<int>();
 
         static void Main(string[] args)
         {
             Program program = new Program();
 
-            program.Input();
-            program.ChackNumber();
+            for(int n = 1;n>0;n++)
+            {
+                Console.Write("\nEnter the value more than 0 to start the Program ==> ");
+                int StartProgram = int.Parse(Console.ReadLine());
 
+                if (StartProgram > 0)
+                {
+                    program.Input();
+                    program.ChackNumber();
+                }
+                if (StartProgram <= 0)
+                {
+                    Console.WriteLine("Enter to close..");
+                    break;
+                }
+            }
             Console.ReadLine();
         }
-
-        void Output(int Fgcd)
+        void Output(int Ans)
         {
-            Console.WriteLine("\nGCD = {0}", Fgcd);
+            ListofInputnumber.Clear();
+            Console.WriteLine("\nGCD = {0}", Ans);
         }
-        void gcdcalculateLevel2(ref int Fgcd,ref int time, ref int modgcd,ref int n)
+        void gcdcalculate(ref int Fgcd,ref int TimeOfDivide, ref int modgcd,ref int RunNumberOnList)
         {
             do
             {
-                time = Fgcd / number[n+1];
-                modgcd = Fgcd % number[n+1];
+                TimeOfDivide = Fgcd / ListofInputnumber[RunNumberOnList + 1];
+                modgcd = Fgcd % ListofInputnumber[RunNumberOnList + 1];
 
-                Console.WriteLine("{0} = {1}({2}) + {3}", Fgcd, number[n+1], time, modgcd);
+                Console.WriteLine("{0} = {1}({2}) + {3}", Fgcd, ListofInputnumber[RunNumberOnList + 1], TimeOfDivide, modgcd);
 
-                Fgcd = number[n+1];
-                number[n+1] = modgcd;
+                Fgcd = ListofInputnumber[RunNumberOnList + 1];
+                ListofInputnumber[RunNumberOnList + 1] = modgcd;
                 
                 if (modgcd == 0)
                 {
@@ -41,51 +54,18 @@ namespace Eu
                 }
             } while (modgcd > 0);
         }
-        void gcdcalculate(ref int Fgcd, ref int Bgcd, ref int time, ref int modgcd)
-        {
-            do
-            {
-                time = Fgcd / Bgcd;
-                modgcd = Fgcd % Bgcd;
-
-                Console.WriteLine("{0} = {1}({2}) + {3}", Fgcd, Bgcd, time, modgcd);
-
-                Fgcd = Bgcd;
-                Bgcd = modgcd;
-                if (modgcd == 0)
-                {
-                    break;
-                }
-            } while (modgcd > 0);
-        }
-        void SetotherNumber(ref int Fgcd, ref int Bgcd, ref int startcount0, ref int startcount1,ref int nowgcd)
-        {
-            Console.WriteLine("{0} {1}", startcount0, startcount1);
-            Fgcd = Math.Max(nowgcd,number[startcount0]);
-            Bgcd = Math.Min(nowgcd, number[startcount0]);
-            startcount0++;
-            startcount1++;
-        }
-        void setonetwo(ref int Fgcd, ref int Bgcd, ref int startcount0, ref int startcount1)
-        {
-            Console.WriteLine("{0} {1}", startcount0, startcount1);
-            Fgcd = Math.Max(number[startcount0], number[startcount1]);
-            Bgcd = Math.Min(number[startcount0], number[startcount1]);
-            startcount0++;
-            startcount1++;
-        }
         void Input()
         {
-
-            int a = 1, x = 0, n = 1;
+            int a = 1, InputNumber = 0, ShowNumber = 1;
             while (a > 0)
             {
-                Console.Write("Enter Number {0} : ", n);
-                x = int.Parse(Console.ReadLine());
+                Console.Write("Enter Number {0} : ", ShowNumber);
+                InputNumber = int.Parse(Console.ReadLine());
 
-                number.Add(x);
-                n++;
-                if (x <= 0)
+                ListofInputnumber.Add(InputNumber);
+                ShowNumber++;
+
+                if (InputNumber <= 0)
                 {
                     break;
                 }
@@ -93,58 +73,47 @@ namespace Eu
         }
         void ChackNumber()
         {
-            int countofInput = number.Count();
+            int countofInput = ListofInputnumber.Count();
             int n = -1;
-            foreach (int Runnum in number)
+            foreach (int Runnum in ListofInputnumber)
             {
                 n++;
             }
-            if (n == 2)
-                Euclidean1();
-            if (n > 2)
-                Euclidean2(countofInput);
-            if (n < 2)
+
+            if (n >= 2)
+                Euclidean(countofInput);
+            if (n == 1)
+                Console.WriteLine("GCD = {0}",ListofInputnumber[0]);
+            if (n < 1)
                 Console.WriteLine("Error");
-
         }
-        void Euclidean1()
+        void Euclidean(int countofInput)
         {
-            int Fgcd = 0, Bgcd = 0, time = 0, startcount0 = 0, startcount1 = 1, modgcd = 0;
+            int Fgcd = ListofInputnumber[0],RunNumberOnList = 0, TimeOfDivide = 0,modgcd = 0;
 
+            Console.WriteLine("\n{0} with {1}", ListofInputnumber[RunNumberOnList], ListofInputnumber[RunNumberOnList + 1]);
 
-            setonetwo(ref Fgcd, ref Bgcd, ref startcount0, ref startcount1);
-            gcdcalculate(ref Fgcd, ref Bgcd, ref time, ref modgcd);
+            gcdcalculate(ref Fgcd, ref TimeOfDivide, ref modgcd, ref RunNumberOnList);
 
-            Output(Fgcd);
-        }
-        void Euclidean2(int countofInput)
-        {
-            int Fgcd = 0, Bgcd = 0, n = 0, time = 0, startcount0 = 0, startcount1 = 1, modgcd = 0,nowgcd=0;
-
-
-            Console.WriteLine("\n{0} with {1}", number[n], number[n+1]);
-
-            setonetwo(ref Fgcd, ref Bgcd,ref startcount0, ref startcount1);
-            gcdcalculate(ref Fgcd, ref Bgcd, ref time, ref modgcd);
             countofInput--;
-            nowgcd = Fgcd;
-
+            
             while(countofInput > 2)
             {
                 countofInput--;
-                n++;
-                Console.WriteLine(countofInput);
+                
+                //Console.WriteLine(countofInput);    เช็คว่าในlistเหลือกี่ตัว
 
-                if(number[n+1] < 0)
+                RunNumberOnList++;  
+
+                if(ListofInputnumber[RunNumberOnList + 1] < 0)
                 {
-                    Console.WriteLine("\n{0} with {0}", nowgcd);
-                    Output(nowgcd);
+                    Console.WriteLine("\n{0} with {0}", Fgcd, ListofInputnumber[RunNumberOnList + 1]);
+                    Output(Fgcd);
                 }
-                Console.WriteLine("\n{0} with {1}", nowgcd, number[n+1]);
-                SetotherNumber(ref Fgcd, ref Bgcd, ref startcount0, ref startcount1,ref nowgcd);
-                gcdcalculateLevel2(ref Fgcd,ref time, ref modgcd,ref n);
-
+                Console.WriteLine("\n{0} with {1}", Fgcd, ListofInputnumber[RunNumberOnList + 1]);
+                gcdcalculate(ref Fgcd,ref TimeOfDivide, ref modgcd,ref RunNumberOnList);
             }
+
             Output(Fgcd);
         }
     }
